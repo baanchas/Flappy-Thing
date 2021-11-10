@@ -2,7 +2,7 @@
 #include "App.h"
 
 namespace Engine {
-	//setVerticalSyncEnabled
+	
 	Application* Application::s_Instance = new Application();
 
 	Application::Application()
@@ -12,12 +12,17 @@ namespace Engine {
 
 		m_Menu = new Game::Menu();
 		m_StateManager.PushState(m_Menu);
+
+		m_Game = new Game::Game();
+		m_StateManager.PushState(m_Game);
 	}
 
 	Application::~Application()
 	{
 		delete s_Instance;
 		delete m_Window;
+		delete m_Game;
+		delete m_Menu;
 	}
 
 	void Application::Run()
@@ -31,17 +36,26 @@ namespace Engine {
 			OnRender();
 
 			m_Window->Display();
+
+			if (m_StateManager.GetTop()->Exit())
+			{
+				m_StateManager.Pop();
+			}
 		}
 	}
 
 	void Application::OnUpdate()
 	{
-		m_StateManager.GetTop()->OnUpdate();
+		float time = (float)m_Clock.getElapsedTime().asSeconds();
+		m_TimeStep = time - m_LastFrameTime;
+		m_LastFrameTime = time;
+
+		m_StateManager.GetTop()->OnUpdate(time);
 	}
 
 	void Application::OnRender()
 	{
-		m_StateManager.GetTop()->OnRender();
+		m_StateManager.GetTop()->OnRender(m_Window);
 	}
 
 	void Application::OnEvent()
@@ -59,6 +73,13 @@ namespace Engine {
 			m_StateManager.GetTop()->OnEvent(e);
 		}
 
+	}
+
+	void Application::PushState(State* state)
+	{
+		state->SetAvtive();
+
+		m_StateManager.PushState(state);
 	}
 
 }

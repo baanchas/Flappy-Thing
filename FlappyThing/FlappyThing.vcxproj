@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Engine\States\Game.cpp" />
     <ClCompile Include="src\Engine\States\Menu.cpp" />
     <ClCompile Include="src\Engine\States\State.cpp" />
     <ClCompile Include="src\Engine\States\StateManager.cpp" />
@@ -23,6 +24,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\States\Game.h" />
     <ClInclude Include="src\Engine\States\Menu.h" />
     <ClInclude Include="src\Engine\States\State.h" />
     <ClInclude Include="src\Engine\States\StateManager.h" />

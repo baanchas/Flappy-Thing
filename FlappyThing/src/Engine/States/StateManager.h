@@ -9,8 +9,10 @@ namespace Engine {
 	public:
 
 		void PushState(State* state);
-		State* GetTop();
 		void Pop();
+		State* GetTop();
+
+		int GetSize() { return m_States.size(); }
 
 	private:
 		std::stack<State*> m_States;

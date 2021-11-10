@@ -3,6 +3,7 @@
 #include "Graphics/Window.h"
 #include "Engine/States/StateManager.h"
 #include "Engine/States/Menu.h"
+#include "Engine/States/Game.h"
 
 namespace Engine {
 
@@ -17,9 +18,14 @@ namespace Engine {
 		void OnEvent();
 		void OnRender();
 
+		void PushState(State* state);
+
 		void Exit() { m_Running = false; };
 
 		inline static Application& Get() { return *s_Instance; }
+
+		Game::Menu* GetMenuState() { return m_Menu; };
+		Game::Game* GetGameState() { return m_Game; };
 
 	private:
 		Application();
@@ -34,6 +40,11 @@ namespace Engine {
 		StateManager m_StateManager;
 
 		Game::Menu* m_Menu;
+		Game::Game* m_Game;
+
+		sf::Clock m_Clock;
+		float m_TimeStep;
+		float m_LastFrameTime;
 	};
 
 }

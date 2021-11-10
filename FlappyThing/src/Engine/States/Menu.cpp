@@ -1,20 +1,29 @@
 #include "ftpch.h"
+#include "App.h"
 #include "Menu.h"
 
 namespace Game {
 
 	Menu::Menu()
 	{
-		std::cout << "Menu is Pushed!";
+		
 	}
 
-	void Menu::OnUpdate()
+	void Menu::OnUpdate(float ts)
 	{
-		//std::cout << "Hi from menu!" << std::endl;
+		std::cout << "Hi from menu!" << std::endl;
 	}
 
 	void Menu::OnEvent(sf::Event& e)
 	{
+		if (e.type == sf::Event::KeyPressed)
+		{
+			if (e.key.code == sf::Keyboard::Space)
+			{
+				std::cout << "pressed space";
+				Engine::Application::Get().PushState(Engine::Application::Get().GetGameState());
+			}
+		}
 		if (e.mouseButton.button == sf::Mouse::Right)
 		{
 			std::cout << "The right button was pressed" << std::endl;
@@ -23,7 +32,7 @@ namespace Game {
 		}
 	}
 
-	void Menu::OnRender()
+	void Menu::OnRender(Engine::Graphics::Window* window)
 	{
 	}
 

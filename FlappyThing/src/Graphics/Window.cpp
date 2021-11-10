@@ -20,9 +20,13 @@ namespace Engine { namespace Graphics {
 	{
 		m_NativeWindow = new sf::RenderWindow(sf::VideoMode(props.Width, props.Height), props.Title);
 
+
 		m_Width = props.Width;
 		m_Height = props.Height;
 		m_Title = props.Title;
+		m_VSync = props.VSync;
+
+		m_NativeWindow->setVerticalSyncEnabled(m_VSync);
 	}
 
 	void Window::Clear()
@@ -33,6 +37,11 @@ namespace Engine { namespace Graphics {
 	void Window::Display()
 	{
 		m_NativeWindow->display();
+	}
+
+	void Window::Render(sf::Drawable& obj)
+	{
+		m_NativeWindow->draw(obj);
 	}
 
 }}
