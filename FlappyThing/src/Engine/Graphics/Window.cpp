@@ -27,11 +27,12 @@ namespace Engine { namespace Graphics {
 		m_VSync = props.VSync;
 
 		m_NativeWindow->setVerticalSyncEnabled(m_VSync);
+		m_NativeWindow->setKeyRepeatEnabled(false);
 	}
 
-	void Window::Clear()
+	void Window::Clear(sf::Color color)
 	{
-		m_NativeWindow->clear();
+		m_NativeWindow->clear(color);
 	}
 
 	void Window::Display()

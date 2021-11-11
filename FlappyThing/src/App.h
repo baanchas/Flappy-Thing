@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Graphics/Window.h"
+#include "Engine/Graphics/Window.h"
 #include "Engine/States/StateManager.h"
 #include "Engine/States/Menu.h"
 #include "Engine/States/Game.h"
@@ -23,9 +23,11 @@ namespace Engine {
 		void Exit() { m_Running = false; };
 
 		inline static Application& Get() { return *s_Instance; }
+		inline Graphics::Window& GetWindow() { return *m_Window; }
 
-		Game::Menu* GetMenuState() { return m_Menu; };
-		Game::Game* GetGameState() { return m_Game; };
+		inline Game::Menu* GetMenuState() { return m_Menu; };
+		inline Game::Game* GetGameState() { return m_Game; };
+
 
 	private:
 		Application();

@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <vector>
+#include <stdlib.h>
 
 // ----------- SFML -----------
 
@@ -15,4 +17,4 @@
 
 // ----------- Emgine -----------
 
-
+#include "Engine/Graphics/Window.h"

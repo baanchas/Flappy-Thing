@@ -22,7 +22,10 @@ namespace Engine {namespace Graphics {
 
 		inline sf::RenderWindow* GetNativeWindow() { return m_NativeWindow; }
 
-		void Clear();
+		inline uint32_t& GetWidth() { return m_Width; }
+		inline uint32_t& GetHeight() { return m_Height; }
+
+		void Clear(sf::Color color=sf::Color::Black);
 		void Display();
 		void Render(sf::Drawable& obj);
 

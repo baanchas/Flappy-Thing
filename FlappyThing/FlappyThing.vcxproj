@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Engine\Entity\Entity.cpp" />
     <ClCompile Include="src\Engine\States\Game.cpp" />
     <ClCompile Include="src\Engine\States\Menu.cpp" />
     <ClCompile Include="src\Engine\States\State.cpp" />
@@ -20,17 +21,24 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\App.cpp" />
-    <ClCompile Include="src\Graphics\Window.cpp" />
+    <ClCompile Include="src\Engine\Graphics\Window.cpp" />
+    <ClCompile Include="src\Game\Entities\Player.cpp" />
+    <ClCompile Include="src\Game\Entities\Stone.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\Entity\Entity.h" />
+    <ClInclude Include="src\Engine\Random.h" />
+    <ClInclude Include="src\Engine\Physics\Physics2D.h" />
     <ClInclude Include="src\Engine\States\Game.h" />
     <ClInclude Include="src\Engine\States\Menu.h" />
     <ClInclude Include="src\Engine\States\State.h" />
     <ClInclude Include="src\Engine\States\StateManager.h" />
     <ClInclude Include="src\ftpch.h" />
     <ClInclude Include="src\App.h" />
-    <ClInclude Include="src\Graphics\Window.h" />
+    <ClInclude Include="src\Engine\Graphics\Window.h" />
+    <ClInclude Include="src\Game\Entities\Player.h" />
+    <ClInclude Include="src\Game\Entities\Stone.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -67,12 +75,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
+    <OutDir>$(SolutionDir)bin-$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
+    <OutDir>$(SolutionDir)bin-$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

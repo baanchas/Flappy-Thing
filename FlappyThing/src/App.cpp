@@ -29,7 +29,7 @@ namespace Engine {
 	{
 		while (m_Running)
 		{
-			m_Window->Clear();
+			m_Window->Clear(sf::Color::Blue);
 			
 			OnEvent();
 			OnUpdate();
@@ -50,7 +50,7 @@ namespace Engine {
 		m_TimeStep = time - m_LastFrameTime;
 		m_LastFrameTime = time;
 
-		m_StateManager.GetTop()->OnUpdate(time);
+		m_StateManager.GetTop()->OnUpdate(m_TimeStep);
 	}
 
 	void Application::OnRender()

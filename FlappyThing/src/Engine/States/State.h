@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Graphics/Window.h"
-
 namespace Engine {
 
 	class State
