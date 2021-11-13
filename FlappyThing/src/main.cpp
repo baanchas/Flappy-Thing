@@ -3,7 +3,7 @@
 
 int main()
 {
-	Engine::Application::Get().Run();
+	Engine::Application::Get()->Run();
 
 	return 0;
 }

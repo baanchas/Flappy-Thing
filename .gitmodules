@@ -1,3 +1,0 @@
-[submodule "FlappyThing/lib/Box2d"]
-	path = FlappyThing/lib/Box2d
-	url = https://github.com/TheCherno/box2d.git

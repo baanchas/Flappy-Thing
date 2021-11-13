@@ -29,6 +29,8 @@ namespace Engine {namespace Graphics {
 		void Display();
 		void Render(sf::Drawable& obj);
 
+		void SetCamera(sf::View* camera) { m_NativeWindow->setView(*camera); }
+
 	private:
 		uint32_t m_Width;
 		uint32_t m_Height;
@@ -39,6 +41,8 @@ namespace Engine {namespace Graphics {
 
 		std::string m_Title;
 		
+		sf::View* m_Camera = nullptr;
+
 		sf::RenderWindow* m_NativeWindow;
 	};
 

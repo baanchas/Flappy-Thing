@@ -19,11 +19,12 @@ namespace Engine {
 		void OnRender();
 
 		void PushState(State* state);
+		void SetWindowCamera(sf::View* camera) { m_Window->SetCamera(camera); };
 
 		void Exit() { m_Running = false; };
 
-		inline static Application& Get() { return *s_Instance; }
-		inline Graphics::Window& GetWindow() { return *m_Window; }
+		inline static Application* Get() { return s_Instance; }
+		inline sf::RenderWindow* GetNativeWindow() { return m_Window->GetNativeWindow(); }
 
 		inline Game::Menu* GetMenuState() { return m_Menu; };
 		inline Game::Game* GetGameState() { return m_Game; };

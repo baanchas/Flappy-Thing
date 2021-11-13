@@ -1,6 +1,5 @@
 #include "ftpch.h"
 #include "Stone.h"
-#include "App.h"
 
 namespace Game {
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "ftpch.h"
-
 namespace Engine {
 
 	class Random 

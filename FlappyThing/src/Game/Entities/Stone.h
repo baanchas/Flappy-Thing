@@ -19,6 +19,7 @@ namespace Game {
 		inline sf::Vector2f& GetPosition() { return m_Position; };
 
 		inline float GetWidth() { return WIDTH; }
+		inline float GetHeight() { return HEIGHT; }
 
 	private:
 		sf::ConvexShape m_Triangle;

@@ -1,6 +1,5 @@
 #include "ftpch.h"
 #include "Player.h"
-#include "App.h"
 
 #include "Engine/Random.h"
 
@@ -26,7 +25,7 @@ namespace Game {
 			AnimateFlying();
 		}
 
-		if (m_Rotation < 180)
+		if (m_Rotation < 150)
 		{
 			m_Rotation += 3.0f;
 		}
@@ -61,7 +60,7 @@ namespace Game {
 	{
 		if (m_SpeedY < 0)
 		{
-			if (m_Rotation > 0)
+			if (m_Rotation > 30)
 			{
 				if (m_Rotation > 90.0f)
 				{
@@ -71,7 +70,6 @@ namespace Game {
 				m_Rotation -= 10.0f;
 			}
 		}
-		//m_Sprite.setRotation((m_SpeedY / (DEFAULT_SPEED / 90.0f) + 90.0f));
 	}
 
 

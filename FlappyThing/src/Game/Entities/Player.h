@@ -10,13 +10,15 @@ namespace Game {
 	public:
 
 		Player();
-		~Player();
+		~Player() {};
 
 		void OnUpdate(float ts) override;
 		void OnEvent(sf::Event& e) override;
 		void Render(Engine::Graphics::Window* window) override;
 
 		void AnimateFlying();
+
+		sf::Vector2u GetSize() { return m_Texture.getSize(); }
 
 	private:
 

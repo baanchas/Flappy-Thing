@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Entity\Entity.cpp" />
+    <ClCompile Include="src\Engine\Physics\BoxCollider2D.cpp" />
     <ClCompile Include="src\Engine\States\Game.cpp" />
     <ClCompile Include="src\Engine\States\Menu.cpp" />
     <ClCompile Include="src\Engine\States\State.cpp" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Entity\Entity.h" />
+    <ClInclude Include="src\Engine\Physics\BoxCollider2D.h" />
     <ClInclude Include="src\Engine\Random.h" />
     <ClInclude Include="src\Engine\Physics\Physics2D.h" />
     <ClInclude Include="src\Engine\States\Game.h" />
@@ -89,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDIr)FlappyThing\lib\SFML\include\;$(SolutionDIr)FlappyThing\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FlappyThing\lib\box2d\include\;$(SolutionDIr)FlappyThing\lib\SFML\include\;$(SolutionDIr)FlappyThing\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ftpch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -108,7 +110,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDIr)FlappyThing\lib\SFML\include\;$(SolutionDIr)FlappyThing\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)FlappyThing\lib\box2d\include\;$(SolutionDIr)FlappyThing\lib\SFML\include\;$(SolutionDIr)FlappyThing\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ftpch.h</PrecompiledHeaderFile>
     </ClCompile>

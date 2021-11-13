@@ -1,8 +1,11 @@
 #pragma once
 
+
 #include "State.h"
 
 namespace Game {
+
+	class Application;
 
 	class Menu : public Engine::State
 	{

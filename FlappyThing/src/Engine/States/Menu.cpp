@@ -1,6 +1,6 @@
 #include "ftpch.h"
-#include "App.h"
 #include "Menu.h"
+#include "App.h"
 
 namespace Game {
 
@@ -21,7 +21,7 @@ namespace Game {
 			if (e.key.code == sf::Keyboard::Space)
 			{
 				std::cout << "pressed space";
-				Engine::Application::Get().PushState(Engine::Application::Get().GetGameState());
+				Engine::Application::Get()->PushState(Engine::Application::Get()->GetGameState());
 			}
 		}
 		if (e.mouseButton.button == sf::Mouse::Right)
