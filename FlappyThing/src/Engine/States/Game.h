@@ -19,10 +19,6 @@ namespace Game {
 		void InitPillars();
 		void SpawnPillars(Pillar& topPillar, Pillar& bottomPillar, int& startPlace);
 
-		void SetWall(uint32_t centerX, uint32_t centerY, uint32_t width, uint32_t height);
-		void SetRocketCol(uint32_t centerX, uint32_t centerY, uint32_t width, uint32_t height);
-
-
 		void Quit();
 		void SetAvtive() override;
 		inline bool Exit() override { return m_isQuit; }
@@ -37,12 +33,18 @@ namespace Game {
 
 		std::vector<Pillar> m_Pillars;
 
-		std::string str = "Rocket";
-
 		sf::RectangleShape m_TopFloor;
 		sf::RectangleShape m_BotFloor;
 
 		int m_TempStartPlace = 0.0f;
+
+		int m_Points = 0;
+		
+		bool m_AddPoints = false;
+
+		sf::Text m_ScoreText;
+		sf::Text m_PointsText;
+		sf::Font m_DefaultFont;
 
 		// constants
 

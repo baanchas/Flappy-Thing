@@ -1,5 +1,7 @@
 #include "ftpch.h"
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "Engine/States/Game.h"
 #include "Engine/Physics/Physics2D.h"
 #include "Engine/Random.h"
@@ -9,6 +11,27 @@ namespace Game {
 
 	Game::Game()
 	{
+
+		m_DefaultFont.loadFromFile("res/fonts/FastHand.ttf");
+		
+		m_ScoreText.setFont(m_DefaultFont);
+		m_ScoreText.setString("SCORE: ");
+		m_ScoreText.setCharacterSize(24);
+		m_ScoreText.setStyle(sf::Text::Regular);
+		m_ScoreText.setFillColor(sf::Color::Red);
+		m_ScoreText.setPosition(10, 50);
+		m_ScoreText.setOutlineColor(sf::Color::White);
+		m_ScoreText.setOutlineThickness(2);
+
+		m_PointsText.setFont(m_DefaultFont);
+		m_PointsText.setCharacterSize(24);
+		m_PointsText.setStyle(sf::Text::Regular);
+		m_PointsText.setFillColor(sf::Color::Red);
+		m_PointsText.setPosition(120, 50);
+		m_PointsText.setOutlineColor(sf::Color::White);
+		m_PointsText.setOutlineThickness(2);
+
+
 		m_Player = new Player();
 
 		m_Camera = new sf::View(sf::Vector2f(0.f, 0.f), sf::Vector2f(1280.f, 720.f));
@@ -33,12 +56,27 @@ namespace Game {
 
 	void Game::OnUpdate(float ts)
 	{
+		//Engine::Application::Get()->SetWindowCamera(m_Camera);
+		//m_Camera->setCenter(m_Player->GetPosition());
+		m_Player->OnUpdate(ts);
+
 		for (int i = 0; i < MAX_AMOUNT_OF_PILLARS; i++)
 		{
 			m_Pillars[i].OnUpdate(ts);
 
 			if (i % 2 == 0)
 			{
+				if (m_Pillars[i].GetPosition().x + m_Pillars[i].GetWidth() / 2 < m_Player->GetPosition().x - m_Player->GetSize().x)
+				{
+					if (m_Pillars[i].CanAddToPoints())
+					{
+						m_Points++;
+						std::cout << m_Points << std::endl;
+					}
+					m_Pillars[i].SetAsAddable(false);
+
+				}
+
 				if (m_Pillars[i].GetPosition().x + m_Pillars[i].GetWidth() / 2 < 0.0f)
 				{
 					m_TempStartPlace = 0.0f;
@@ -55,12 +93,27 @@ namespace Game {
 				}
 			}
 		}
+
+
+		for (int i = 0; i < MAX_AMOUNT_OF_PILLARS; i++)
+		{
+			if (m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[0])
+				|| m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[1])
+				|| m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[2])
+				|| m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[3]))
+			{
+				std::cout << "contains " << i << std::endl;
+			}
+		}
+
+		std::string pointsText = std::to_string(m_Points);
+
+		m_PointsText.setString(pointsText);
 	}
 
 	void Game::OnEvent(sf::Event& e)
 	{
-		//m_Player->OnEvent(e);
-
+		m_Player->OnEvent(e);
 
 		if (e.type == sf::Event::KeyPressed)
 		{
@@ -74,7 +127,6 @@ namespace Game {
 	void Game::OnRender(Engine::Graphics::Window* window)
 	{
 		m_Player->Render(window);
-
 		for (size_t i = 0; i < MAX_AMOUNT_OF_PILLARS; i++)
 		{
 			m_Pillars[i].Render(window);
@@ -82,6 +134,8 @@ namespace Game {
 
 		window->Render(m_TopFloor);
 		window->Render(m_BotFloor);
+		window->Render(m_ScoreText);
+		window->Render(m_PointsText);
 	}
 
 	void Game::InitPillars()
@@ -114,20 +168,12 @@ namespace Game {
 		int tempRandY = Engine::Random::RangedRandom(3, 7);
 		topPillar.SetPosition(sf::Vector2f(startPlace + DISTANCE_MULTIPLIER * tempRandX, MAX_POSITION_OF_PILLAR + (DISTANCE_MULTIPLIER * tempRandY / 2)));
 
-		tempRandY = Engine::Random::RangedRandom(tempRandY, tempRandY + 4);
+		tempRandY = Engine::Random::RangedRandom(tempRandY + 2, tempRandY + 3);
 		bottomPillar.SetPosition(sf::Vector2f(startPlace + DISTANCE_MULTIPLIER * tempRandX, MIN_POSITION_OF_PILLAR + (DISTANCE_MULTIPLIER * tempRandY / 2)));
 
 		startPlace += DISTANCE_MULTIPLIER * tempRandX;
-	}
 
-	void Game::SetWall(uint32_t centerX, uint32_t centerY, uint32_t width, uint32_t height)
-	{
-		
-	}
-
-	void Game::SetRocketCol(uint32_t centerX, uint32_t centerY, uint32_t width, uint32_t height)
-	{
-		
+		topPillar.SetAsAddable(true);
 	}
 
 	void Game::Quit()

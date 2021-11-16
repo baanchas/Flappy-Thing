@@ -7,9 +7,7 @@
 #include <stack>
 #include <vector>
 #include <stdlib.h>
-
-// ----------- box2d -----------
-
+#include <math.h>
 
 // ----------- SFML -----------
 
