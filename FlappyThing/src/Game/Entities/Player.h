@@ -2,7 +2,6 @@
 
 #include "Engine/Entity/Entity.h"
 
-
 namespace Game {
 
 	class Player : public Engine::Entity
@@ -18,13 +17,19 @@ namespace Game {
 
 		void AnimateFlying();
 
+		void Reset();
+
+		void SetVitaliy(bool alive) { m_IsAlive = alive; };
+
 		sf::Vector2u GetSize() { return m_Texture.getSize(); }
 		sf::Vector2f* GetVerticesCoordinates() { return m_Vertices; };
+		inline bool IsAlive() { return m_IsAlive; }
 
 	private:
 		void ComputeCoordinates();
 
 	private:
+		bool m_IsAlive = true;
 
 		sf::Texture m_Texture;
 		sf::Sprite m_Sprite;

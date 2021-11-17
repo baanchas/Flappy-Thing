@@ -22,14 +22,16 @@ namespace Engine {namespace Graphics {
 
 		inline sf::RenderWindow* GetNativeWindow() { return m_NativeWindow; }
 
-		inline uint32_t& GetWidth() { return m_Width; }
-		inline uint32_t& GetHeight() { return m_Height; }
+		inline uint32_t GetWidth() { return m_Width; }
+		inline uint32_t GetHeight() { return m_Height; }
 
 		void Clear(sf::Color color=sf::Color::Black);
 		void Display();
 		void Render(sf::Drawable& obj);
 
 		void SetCamera(sf::View* camera) { m_NativeWindow->setView(*camera); }
+
+		//static uint32_t GetWidth() {}
 
 	private:
 		uint32_t m_Width;

@@ -12,7 +12,7 @@ namespace Engine {
 		void Pop();
 		State* GetTop();
 
-		int GetSize() { return m_States.size(); }
+		int GetSize() { return (int)m_States.size(); }
 
 	private:
 		std::stack<State*> m_States;

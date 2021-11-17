@@ -1,7 +1,10 @@
 #include "ftpch.h"
 #include "Player.h"
 
+
 #include "Engine/Random.h"
+#include "App.h"
+
 
 namespace Game {
 
@@ -10,17 +13,14 @@ namespace Game {
 		m_Texture.loadFromFile("res/sprites/rocket/rocket.png");
 		m_Texture.setSmooth(true);
 		m_Sprite.setTexture(m_Texture);
-		m_Sprite.setTextureRect(sf::IntRect(0, 0, 46, 50));
 		m_Sprite.setScale(1.2f, 1.2f);
-		m_Sprite.setOrigin(m_Texture.getSize().x / 2, m_Texture.getSize().y / 2);
-		m_Position = sf::Vector2f(640.0f, 0.0f);
+		m_Sprite.setOrigin((float)m_Texture.getSize().x / 2, (float)m_Texture.getSize().y / 2);
+		m_Position = sf::Vector2f(Engine::Application::Get()->GetWindow()->GetWidth() / 2, 0.0f);
 		m_Rotation = 90.0f;
 
 		m_BoxCollider.setSize(sf::Vector2f(38.0f, 50.0f));
 		m_BoxCollider.setOrigin(20.0f, 25.0f);
-		m_BoxCollider.setOutlineColor(sf::Color::Red);
-		m_BoxCollider.setOutlineThickness(2.0f);
-		m_BoxCollider.setFillColor(sf::Color(1.0f, 1.0f, 1.0f, 0.0f));
+		m_BoxCollider.setFillColor(sf::Color(1, 1, 1, 0));
 	}
 
 	void Player::OnUpdate(float ts)
@@ -90,6 +90,14 @@ namespace Game {
 				m_Rotation -= 10.0f;
 			}
 		}
+	}
+
+	void Player::Reset()
+	{
+		m_Position = sf::Vector2f((float)Engine::Application::Get()->GetWindow()->GetWidth() / 2, (float)Engine::Application::Get()->GetWindow()->GetHeight() / 2);
+		m_Rotation = 90.0f;
+		m_SpeedY = MAX_SPEED;
+		m_IsAlive = true;
 	}
 
 	void Player::ComputeCoordinates()

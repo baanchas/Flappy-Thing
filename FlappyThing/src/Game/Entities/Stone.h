@@ -17,7 +17,7 @@ namespace Game {
 		void Render(Engine::Graphics::Window* window) override;
 
 		void SetAsAddable(bool condition) { m_isAddedToPoints = condition; }
-
+		void SetColor(sf::Color color) { m_Rect.setFillColor(color); }
 		inline sf::Vector2f& GetPosition() { return m_Position; };
 
 		inline float GetWidth() { return WIDTH; }

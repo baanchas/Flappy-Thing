@@ -15,7 +15,6 @@ namespace Engine { namespace Graphics {
 	Window::~Window()
 	{
 		delete m_NativeWindow;
-		delete m_Camera;
 	}
 
 	void Window::Init(WindowProperties props)

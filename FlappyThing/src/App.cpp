@@ -7,6 +7,8 @@ namespace Engine {
 
 	Application::Application()
 	{
+		s_Instance = this;
+
 		m_Window = new Graphics::Window();
 		m_Running = true;
 
@@ -29,7 +31,7 @@ namespace Engine {
 	{
 		while (m_Running)
 		{
-			m_Window->Clear(sf::Color::Blue);
+			m_Window->Clear(sf::Color(40, 40, 40, 255));
 			
 			OnEvent();
 			OnUpdate();

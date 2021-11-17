@@ -24,6 +24,7 @@ namespace Engine {
 		void Exit() { m_Running = false; };
 
 		inline static Application* Get() { return s_Instance; }
+		inline Graphics::Window* GetWindow() { return m_Window; }
 		inline sf::RenderWindow* GetNativeWindow() { return m_Window->GetNativeWindow(); }
 
 		inline Game::Menu* GetMenuState() { return m_Menu; };

@@ -12,6 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Entity\Entity.cpp" />
+    <ClCompile Include="src\Engine\States\Overlay.cpp" />
+    <ClCompile Include="src\Engine\UI\Button.cpp" />
+    <ClCompile Include="src\Engine\UI\UI.cpp" />
     <ClCompile Include="src\Engine\Physics\BoxCollider2D.cpp" />
     <ClCompile Include="src\Engine\States\Game.cpp" />
     <ClCompile Include="src\Engine\States\Menu.cpp" />
@@ -29,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Entity\Entity.h" />
+    <ClInclude Include="src\Engine\States\Overlay.h" />
+    <ClInclude Include="src\Engine\UI\Button.h" />
+    <ClInclude Include="src\Engine\UI\UI.h" />
     <ClInclude Include="src\Engine\Physics\BoxCollider2D.h" />
     <ClInclude Include="src\Engine\Random.h" />
     <ClInclude Include="src\Engine\Physics\Physics2D.h" />
