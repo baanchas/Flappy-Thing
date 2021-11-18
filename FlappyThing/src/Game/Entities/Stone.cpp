@@ -46,10 +46,7 @@ namespace Game {
 
 	bool Pillar::Contains(const sf::Vector2f& vector)
 	{
-		if (GetPosition().x - WIDTH / 2 < vector.x 
-			&& GetPosition().x + WIDTH / 2 > vector.x
-			&& GetPosition().y + HEIGHT/ 2 > vector.y
-			&& GetPosition().y - HEIGHT / 2 < vector.y)
+		if (m_Rect.getGlobalBounds().contains(vector))
 		{
 			return true;
 		}

@@ -56,9 +56,9 @@ namespace Game {
 				}
 			}
 
-			SetColors();
-
 			CollisionTest();
+
+			SetColors();
 
 			m_UI.OnUpdate(ts);
 
@@ -166,11 +166,6 @@ namespace Game {
 		{
 			Pillar pillar;
 			m_Pillars.push_back(pillar);
-
-			if (i % 2 == 1)
-			{
-				m_Pillars[i].SetRotation(180.0f);
-			}
 		}
 
 		for (int i = 0; i < MAX_AMOUNT_OF_PILLARS - 1; i++)
@@ -198,25 +193,27 @@ namespace Game {
 
 	void Game::CollisionTest()
 	{
-		bool collidedWithPillar = false;
-		bool collidedWithTopFloor = false;
-		bool collidedWithBotFloor = false;
+		bool collision = false;
 
 		for (int i = 0; i < MAX_AMOUNT_OF_PILLARS; i++)
 		{
-			collidedWithPillar = m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[0]) || m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[1]) || m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[2]) || m_Pillars[i].Contains(m_Player->GetVerticesCoordinates()[3]);
+			for (auto element : m_Player->GetVerticesCoordinates())
+			{
+				if (m_Pillars[i].Contains(element) || m_BotFloor.getGlobalBounds().contains(element) || m_TopFloor.getGlobalBounds().contains(element))
+				{
+					collision = true;
+					break;
+				}
+			}
 
-			collidedWithTopFloor = m_TopFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[0]) || m_TopFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[1]) || m_TopFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[2]) || m_TopFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[3]);
-
-			collidedWithBotFloor = m_BotFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[0]) || m_BotFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[1]) || m_BotFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[2]) || m_BotFloor.getGlobalBounds().contains(m_Player->GetVerticesCoordinates()[3]);
-
-			if (collidedWithPillar || collidedWithTopFloor || collidedWithBotFloor)
+			if (collision)
 			{
 				m_Player->SetVitaliy(false);
 				SwitchState();
 				break;
 			}
 		}
+		
 	}
 
 	void Game::CountPoints(int i)

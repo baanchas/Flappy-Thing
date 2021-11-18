@@ -22,7 +22,7 @@ namespace Game {
 		void SetVitaliy(bool alive) { m_IsAlive = alive; };
 
 		sf::Vector2u GetSize() { return m_Texture.getSize(); }
-		sf::Vector2f* GetVerticesCoordinates() { return m_Vertices; };
+		std::vector<sf::Vector2f>& GetVerticesCoordinates() { return m_Vertices; };
 		inline bool IsAlive() { return m_IsAlive; }
 
 	private:
@@ -35,7 +35,11 @@ namespace Game {
 		sf::Sprite m_Sprite;
 		
 		sf::RectangleShape m_BoxCollider;
-		sf::Vector2f m_Vertices[4];
+		std::vector<sf::Vector2f> m_Vertices;
+
+		// constants
+
+		const sf::Vector2f COLLIDER_SIZE = {26.0f, 50.0f};
 
 		const float JUMP_SPEED = 500.0f;
 		const float MAX_SPEED = 500.0f;
