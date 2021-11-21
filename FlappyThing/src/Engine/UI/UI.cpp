@@ -6,7 +6,8 @@ namespace Engine {
 
 	UIRegister::UIRegister()
 	{
-		m_DefaultFont.loadFromFile("res/fonts/fasthand.ttf");
+		// getting default font
+		m_DefaultFont.loadFromFile("res/fonts/chopsic.ttf");
 	}
 
 	void UIRegister::OnUpdate(float ts)
@@ -17,6 +18,7 @@ namespace Engine {
 		{
 			itBtns->second.OnUpdate(ts);
 
+			// set Text position to center of the button
 			GetText(itBtns->second.GetText()).setPosition(itBtns->second.GetPosition());
 		}
 	}
@@ -48,6 +50,8 @@ namespace Engine {
 		}
 	}
 	
+	// Register Text to TextRegister and setup default values (origin, color etc)
+
 	void UIRegister::RegisterText(const std::string& string, int size, bool outlineThickness)
 	{
 		sf::Text text;
@@ -64,6 +68,8 @@ namespace Engine {
 
 		m_TextRegister.emplace(string, text);
 	}
+
+	// Register Button to Button Register and Text to Text Register by its name
 
 	void UIRegister::RegisterButton(const std::string& name, const std::string& path, bool outlineThickness)
 	{

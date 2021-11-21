@@ -9,22 +9,33 @@ namespace Engine {
 
 	class Application
 	{
+	// This class is Singleton
 	public:
 		~Application();
 
+		// Runs the Main Loop
 		void Run();
+
+		// Main Loop functions
 
 		void OnUpdate();
 		void OnEvent();
 		void OnRender();
+
+		// ---------------------
 
 		void PushState(State* state);
 		void SetWindowCamera(sf::View* camera) { m_Window->SetCamera(camera); };
 
 		void Exit() { m_Running = false; };
 
+		// Gets the instance of this application
 		inline static Application* Get() { return s_Instance; }
+
+		// Getting the Window
 		inline Graphics::Window* GetWindow() { return m_Window; }
+
+		// Getting SFML window
 		inline sf::RenderWindow* GetNativeWindow() { return m_Window->GetNativeWindow(); }
 
 		inline Game::Menu* GetMenuState() { return m_Menu; };
@@ -49,6 +60,7 @@ namespace Engine {
 		sf::Clock m_Clock;
 		float m_TimeStep;
 		float m_LastFrameTime;
+
 	};
 
 }

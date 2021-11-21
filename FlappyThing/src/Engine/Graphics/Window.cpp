@@ -9,7 +9,6 @@ namespace Engine { namespace Graphics {
 		WindowProperties properties;
 
 		Init(properties);
-
 	}
 
 	Window::~Window()
@@ -21,7 +20,6 @@ namespace Engine { namespace Graphics {
 	{
 		m_NativeWindow = new sf::RenderWindow(sf::VideoMode(props.Width, props.Height), props.Title);
 
-
 		m_Width = props.Width;
 		m_Height = props.Height;
 		m_Title = props.Title;
@@ -31,19 +29,29 @@ namespace Engine { namespace Graphics {
 		m_NativeWindow->setKeyRepeatEnabled(false);
 	}
 
+	void Window::OnUpdate(float ts)
+	{
+		m_Width = m_NativeWindow->getSize().x;
+		m_Height = m_NativeWindow->getSize().y;
+	}
+
+	// Render given object to the Window
+
+	void Window::Render(sf::Drawable& obj)
+	{
+		m_NativeWindow->draw(obj);
+	}
+
 	void Window::Clear(sf::Color color)
 	{
 		m_NativeWindow->clear(color);
 	}
 
+	// Displaying rendered objects
+
 	void Window::Display()
 	{
 		m_NativeWindow->display();
-	}
-
-	void Window::Render(sf::Drawable& obj)
-	{
-		m_NativeWindow->draw(obj);
 	}
 
 }}

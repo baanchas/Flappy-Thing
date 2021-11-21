@@ -1,5 +1,6 @@
 #include "ftpch.h"
 #include "App.h"
+#include "Engine/Random.h"
 
 namespace Engine {
 	
@@ -16,7 +17,9 @@ namespace Engine {
 		m_StateManager.PushState(m_Menu);
 
 		m_Game = new Game::Game();
-		m_StateManager.PushState(m_Game);
+
+		Random::Init();
+		//m_StateManager.PushState(m_Game);
 	}
 
 	Application::~Application()
@@ -26,6 +29,8 @@ namespace Engine {
 		delete m_Game;
 		delete m_Menu;
 	}
+
+	// MAIN LOOP
 
 	void Application::Run()
 	{
@@ -46,24 +51,36 @@ namespace Engine {
 		}
 	}
 
+	// Main on update fucntion of the Engine that iterates every frame
+
 	void Application::OnUpdate()
 	{
+		// getting Time Step (delta time) of the frame
 		float time = (float)m_Clock.getElapsedTime().asSeconds();
 		m_TimeStep = time - m_LastFrameTime;
 		m_LastFrameTime = time;
 
+		m_Window->OnUpdate(m_TimeStep);
+
+		// calling update of top state in state manager stack
 		m_StateManager.GetTop()->OnUpdate(m_TimeStep);
 	}
 
+	// Main on render fucntion of the Engine that iterates every frame
+
 	void Application::OnRender()
 	{
+		// calling update of top state in state manager stack
 		m_StateManager.GetTop()->OnRender(m_Window);
 	}
+
+	// Main on event function that handles events of the Window
 
 	void Application::OnEvent()
 	{
 		sf::Event e;
 
+		// waiting for event and sending it through engine
 		while (m_Window->GetNativeWindow()->pollEvent(e))
 		{
 			if (e.type == sf::Event::Closed)
@@ -79,7 +96,7 @@ namespace Engine {
 
 	void Application::PushState(State* state)
 	{
-		state->SetAvtive();
+		state->SetActive();
 
 		m_StateManager.PushState(state);
 	}

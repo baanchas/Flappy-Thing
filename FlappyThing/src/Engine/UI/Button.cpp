@@ -15,6 +15,8 @@ namespace Engine {	namespace UI {
 
 	void Button::OnUpdate(float ts)
 	{
+		// set color hovered, clicked or pressed colors
+
 		switch (STATE)
 		{
 		case ButtonState::NONE:
@@ -34,15 +36,16 @@ namespace Engine {	namespace UI {
 			break;
 		}
 
+		// change condition to PRESS if button is pressed
+
 		if (STATE != ButtonState::UNACTIVE)
 		{
-			//m_Sprite.setColor(m_DefaultColor);
 			STATE = ButtonState::NONE;
 
 			m_Size = sf::Vector2f(m_Texture.getSize().x, m_Texture.getSize().y);
 			m_Sprite.setPosition(m_Position);
 
-
+			// check if button sprite contains cursor
 			if (m_Sprite.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(*Engine::Application::Get()->GetNativeWindow()).x, sf::Mouse::getPosition(*Engine::Application::Get()->GetNativeWindow()).y)))
 			{
 				STATE = ButtonState::HOVER;
@@ -52,12 +55,13 @@ namespace Engine {	namespace UI {
 					STATE = ButtonState::PRESS;
 				}
 			}
-
 		}
 	}
 
 	void Button::OnEvent(sf::Event& e)
 	{
+		// change condition to CLICK if button is clicked
+
 		if (STATE != ButtonState::UNACTIVE)
 		{
 			if (m_Sprite.getGlobalBounds().contains(sf::Vector2f(sf::Mouse::getPosition(*Engine::Application::Get()->GetNativeWindow()).x, sf::Mouse::getPosition(*Engine::Application::Get()->GetNativeWindow()).y)))
@@ -91,6 +95,8 @@ namespace Engine {	namespace UI {
 		m_Sprite.setTexture(m_Texture);
 	}
 
+	// change condition to HOVER if button is hovered
+
 	bool Button::IsHovered()
 	{
 		if (STATE == ButtonState::HOVER)
@@ -100,6 +106,8 @@ namespace Engine {	namespace UI {
 		return false;
 	}
 
+	// check if the button CLICKED
+
 	bool Button::IsClicked()
 	{
 		if (STATE == ButtonState::CLICK)
@@ -108,6 +116,8 @@ namespace Engine {	namespace UI {
 		}
 		return false;
 	}
+
+	// check if the button PRESSED
 
 	bool Button::IsPressed()
 	{

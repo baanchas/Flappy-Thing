@@ -4,7 +4,7 @@ namespace Engine {namespace Graphics {
 
 	struct WindowProperties
 	{
-		std::string Title = "Flappy thing";
+		std::string Title = "FLAPPY ROCKET";
 
 		uint32_t Width = 1280;
 		uint32_t Height = 720;
@@ -25,14 +25,13 @@ namespace Engine {namespace Graphics {
 		inline uint32_t GetWidth() { return m_Width; }
 		inline uint32_t GetHeight() { return m_Height; }
 
-		void Clear(sf::Color color=sf::Color::Black);
-		void Display();
+		void OnUpdate(float ts);
 		void Render(sf::Drawable& obj);
 
+		void Clear(sf::Color color=sf::Color::Black);
+		void Display();
+
 		void SetCamera(sf::View* camera) { m_NativeWindow->setView(*camera); }
-
-		//static uint32_t GetWidth() {}
-
 	private:
 		uint32_t m_Width;
 		uint32_t m_Height;
@@ -43,8 +42,6 @@ namespace Engine {namespace Graphics {
 
 		std::string m_Title;
 		
-		sf::View* m_Camera = nullptr;
-
 		sf::RenderWindow* m_NativeWindow;
 	};
 

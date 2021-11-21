@@ -8,6 +8,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <math.h>
+#include <fstream>
 
 // ----------- SFML -----------
 
@@ -19,4 +20,5 @@
 // ----------- Emgine -----------
 
 #include "Engine/Graphics/Window.h"
+#include "Engine/Random.h"
 

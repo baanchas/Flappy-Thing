@@ -21,15 +21,10 @@ namespace Engine {
 		void OnEvent(sf::Event& e);
 		void OnRender(Engine::Graphics::Window* window);
 
-		void SwitchState();
 		void SetInterface();
 
 		Engine::UIRegister& GetUI() { return m_UI; };
-
-		STATE GetState() { return m_State; }
-
 	private:
-		STATE m_State = STATE::HIDDEN;
 
 		float m_ScreenWidth;
 		float m_ScreenHeight;

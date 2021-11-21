@@ -2,10 +2,10 @@
 
 #include "State.h"
 #include "Game/Entities/Player.h"
-#include "Game/Entities/Stone.h"
+#include "Game/Entities/Pillar.h"
 #include "Engine/UI/UI.h"
 #include "Engine/States/Overlay.h"
-
+#include "Engine/ParticleSystem/ObjectGenerator.h"
 
 namespace Game {
 
@@ -30,51 +30,63 @@ namespace Game {
 		void OnEvent(sf::Event& e) override;
 		void OnRender(Engine::Graphics::Window* window) override;
 		
+		void OnUpdatePLAY(float ts);
+
 		void InitMap();
 		void InitPillars();
+		void CollisionTest(sf::Vector2f vector);
 		void SpawnPillars(Pillar& topPillar, Pillar& bottomPillar, int& startPlace);
-		void CollisionTest();
-		void CountPoints(int i);
-		void SetColors();
 
+		void SetColors();
+		void CountPoints(int i);
 		void Reset();
 		void SwitchState();
 
+		void SetAndSavePoints(int points);
+
 		void Quit();
-		void SetAvtive() override;
+		void SetActive() override;
 		inline bool Exit() override { return m_isQuit; }
 
-		inline sf::View* GetCamera() { return m_Camera; };
-		inline sf::Vector2f GetPlayerPosition() { return m_Player->GetPosition(); }
-	private:
-		GAMESTATE m_State = GAMESTATE::PLAY;
+		bool GetPLayerVitalityState() { return m_Player->IsAlive(); }
 
+		inline sf::Vector2f GetPlayerPosition() { return m_Player->GetPosition(); }
+
+		inline int GetHighPoints() { return m_HighPoints; }
+
+	public:
+		GAMESTATE m_State = GAMESTATE::PLAY;
 		Engine::Overlay m_PauseOverlay;
 
+	private:
+		
 		Player* m_Player;
 
-		sf::View* m_Camera;
-		
+		Engine::CircleProps m_StarProps;
+		Engine::ObjectGenerator m_StarGenerator = Engine::ObjectGenerator(20);
+
 		Engine::UIRegister m_UI;
-
-		std::vector<Pillar> m_Pillars;
-
+		
+		std::vector<Pillar> m_PillarsPool;
+		std::ifstream m_ToRead;
+		std::ofstream m_ToWrite;
+		
 		sf::RectangleShape m_TopFloor;
 		sf::RectangleShape m_BotFloor;
 
-		int m_TempStartPlace = 0;
+		sf::Texture m_WallpaperTexture;
+		sf::Sprite m_WallpaperSprite;
 
-		int m_Points = 0;
+		Color m_Color;
 
 		uint32_t m_ScreenWidth;
 		uint32_t m_ScreenHeight;
 
-		Color m_Color;
+		int m_Points = 0;
+		int m_HighPoints = 0;
+		int m_TempStartPlace = 0;
 
 		// constants
-
-		const float SCALE = 30.0f;
-		const float DEG = 57.0f;
 
 		const int MAX_AMOUNT_OF_PILLARS = 8;
 		const float MAX_POSITION_OF_PILLAR = -200;
