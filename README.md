@@ -1,2 +1,1 @@
-RUN:
-git clone https://github.com/baanchas/Flappy-Thing.git {dir}
+1) git clone https://github.com/baanchas/Flappy-Thing.git {dir}
